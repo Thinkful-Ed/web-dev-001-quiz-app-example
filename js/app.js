@@ -87,7 +87,7 @@ function renderApp(state, elements) {
   Object.keys(elements).forEach(function(route) {
     elements[route].attr('hidden', 'hidden');
   });
-  elements[state.route].removeAttr('hidden');
+  
 
   if (state.route === 'start') {
       renderStartPage(state, elements[state.route]);
@@ -101,6 +101,9 @@ function renderApp(state, elements) {
   else if (state.route === 'final-feedback') {
     renderFinalFeedbackPage(state, elements[state.route]);
   }
+  
+  //show current route after it has been invisibly rendered
+  elements[state.route].removeAttr('hidden');
 }
 
 // at the moment, `renderStartPage` doesn't do anything, because
