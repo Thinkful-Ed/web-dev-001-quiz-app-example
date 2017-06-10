@@ -14,10 +14,9 @@
 
   <div class="container">
 
-    <main>
-    <!-- inline styling this instead of CSS because it should never be viewable to anyone except our JS, which uses this content as mini-templates for questions
-    and answers -->
-      <div class="start-page" style="display: none;">
+    <main role="main" aria-live="polite" aria-relevant="additions text">
+    <!-- html5 boolean hidden allows us to selectively reveal content to all users -->
+      <div class="start-page" hidden>
         <h1>Quiz App</h1>
         <p>This app tests your ability to guess the right answer to four questions. The correct answers have been chosen at random.</p>
         <p><em>Good luck friend!</em></p>
@@ -26,17 +25,18 @@
         </form>
       </div>
 
-      <div class="question-page" style="display: none;">
-        <h3><span class="question-count"></span> : <span class="question-text"></span></h3>
+      <div class="question-page" hidden>
         <form name="current-question">
-          <ol type="A" class="choices">
-          </ol>
+          <fieldset>
+            <legend><span class="question-count"></span> : <span class="question-text"></span></legend>
+            <div class="choices"></div>
+          </fieldset>
           <button type="submit">Submit</button>
           <button class="restart-game">Start over</button>
         </form>
       </div>
 
-      <div class="answer-feedback-page" style="display: none;">
+      <div class="answer-feedback-page" hidden>
         <div class="feedback-container">
           <div class="feedback-header"></div>
           <p class="feedback-text"></p>
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div class="final-feedback-page" style="display: none;">
+      <div class="final-feedback-page" hidden>
         <h1>Results</h1>
         <p class="results-text"></p>
         <button class="restart-game">Start over</button>
