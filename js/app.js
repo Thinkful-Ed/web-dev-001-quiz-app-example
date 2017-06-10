@@ -90,10 +90,10 @@ function renderApp(state, elements) {
   
 
   if (state.route === 'start') {
-      renderStartPage(state, elements[state.route]);
+    renderStartPage(state, elements[state.route]);
   }
   else if (state.route === 'question') {
-      renderQuestionPage(state, elements[state.route]);
+    renderQuestionPage(state, elements[state.route]);
   }
   else if (state.route === 'answer-feedback') {
     renderAnswerFeedbackPage(state, elements[state.route]);
@@ -141,8 +141,7 @@ function renderQuestionText(state, element) {
 
 function renderChoices(state, element) {
   const currentQuestion = state.questions[state.currentQuestionIndex];
-  const frag = $(document.createDocumentFragment());
-  const choices = currentQuestion.choices.map(function(choice, index) {
+  const choices = currentQuestion.choices.map((choice, index) => {
     return (
         `<label>
           <input type="radio" 
@@ -152,8 +151,7 @@ function renderChoices(state, element) {
         </label>`
     );
   });
-  frag.append(choices);
-  element.html(frag);
+  element.html(choices);
 }
 
 function renderAnswerFeedbackHeader(state, element) {
