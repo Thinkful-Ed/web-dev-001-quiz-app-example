@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+main {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+label {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+input[type=radio] {
+    position: relative;
+    vertical-align: middle;
+    height: 1.5rem;
+    bottom: 2px;
+    *bottom: 0;
+    margin-right: 7px;
+}
+
+p {
+	max-width: 400px;
+}
+
+.container {
+	padding: 0 60px;
+	padding-top: 90px;
+}
+
+.user-was-correct::before {
+	content: "Shhhh!!!!! (";
+}
+
+.user-was-correct::after {
+	content: ")";
+}
+
+.user-was-incorrect {
+	font-size: 50px;
+	color: red;
+}
