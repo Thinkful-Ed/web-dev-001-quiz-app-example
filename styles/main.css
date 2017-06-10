@@ -7,11 +7,12 @@
 main {
 	max-width: 960px;
 	margin: 0 auto;
+	line-height: 1.5;
 }
 
 label {
+	display: block;
     font-size: 1rem;
-    line-height: 1.5;
 }
 
 input[type=radio] {
