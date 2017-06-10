@@ -154,11 +154,11 @@ function renderChoices(state, element) {
 }
 
 function renderAnswerFeedbackHeader(state, element) {
-  const html = state.lastAnswerCorrect ?
+  const feedback = state.lastAnswerCorrect ?
       "<h2 class='user-was-correct'>correct</h2>" :
       "<h2 class='user-was-incorrect'>Wrooonnnngggg!</h2>";
 
-  element.html(html);
+  element.replaceWith(feedback);
 }
 
 function renderAnswerFeedbackText(state, element) {
