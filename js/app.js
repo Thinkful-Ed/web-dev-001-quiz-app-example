@@ -155,8 +155,8 @@ function renderChoices(state, element) {
 
 function renderAnswerFeedbackHeader(state, element) {
   const html = state.lastAnswerCorrect ?
-      "<h6 class='user-was-correct'>correct</h6>" :
-      "<h1 class='user-was-incorrect'>Wrooonnnngggg!</>";
+      "<h2 class='user-was-correct'>correct</h2>" :
+      "<h2 class='user-was-incorrect'>Wrooonnnngggg!</h2>";
 
   element.html(html);
 }
@@ -210,7 +210,7 @@ $(function() {
 
   QUESTION_FORM.submit(function(event) {
     event.preventDefault();
-    const answer = $("input[name='user-answer']:checked").val();
+    let answer = $("input[name='user-answer']:checked").val();
     answer = parseInt(answer, 10);
     answerQuestion(state, answer);
     renderApp(state, PAGE_ELEMENTS);
