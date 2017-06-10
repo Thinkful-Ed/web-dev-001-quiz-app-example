@@ -181,10 +181,10 @@ function renderFinalFeedbackText(state, element) {
 
 // Event handlers
 var PAGE_ELEMENTS = {
-  'start': $('.start-page'),
-  'question': $('.question-page'),
-  'answer-feedback': $('.answer-feedback-page'),
-  'final-feedback': $('.final-feedback-page')
+  'start': $('[data-page=start]'),
+  'question': $('[data-page=question]'),
+  'answer-feedback': $('[data-page=answer-feedback]'),
+  'final-feedback': $('[data-page=final-feedback]')
 };
 
 $("form[name='game-start']").submit(function(event) {
