@@ -130,7 +130,7 @@ function renderFinalFeedbackPage(state, element) {
 }
 
 function renderQuestionCount(state, element) {
-  const text = (state.currentQuestionIndex + 1) + "/" + state.questions.length;
+  const text = `${(state.currentQuestionIndex + 1)}/${state.questions.length}`;
   element.text(text);
 }
 
@@ -158,7 +158,6 @@ function renderAnswerFeedbackHeader(state, element) {
   const feedback = state.lastAnswerCorrect ?
       "<h2 class='user-was-correct'>correct</h2>" :
       "<h2 class='user-was-incorrect'>Wrooonnnngggg!</h2>";
-
   element.replaceWith(feedback);
 }
 
@@ -175,8 +174,7 @@ function renderNextButtonText(state, element) {
 }
 
 function renderFinalFeedbackText(state, element) {
-  const text = "You got " + state.score + " out of " +
-    state.questions.length + " questions right.";
+  const text = `You got ${state.score} out of ${state.questions.length} questions right.`;
   element.text(text);
 }
 
