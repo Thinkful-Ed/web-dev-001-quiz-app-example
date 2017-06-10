@@ -179,44 +179,48 @@ function renderFinalFeedbackText(state, element) {
   element.text(text);
 }
 
-// Object to map template elements to
-// app routes
-const PAGE_ELEMENTS = {
-  'start': $('[data-page=start]'),
-  'question': $('[data-page=question]'),
-  'answer-feedback': $('[data-page=answer-feedback]'),
-  'final-feedback': $('[data-page=final-feedback]')
-};
+$(function() { 
+  // Forms, other interactive elements
+  const START_FORM = $("form[name='game-start']");
+  const QUESTION_FORM = $("form[name='current-question']");
+  const NEXT_BTN = $(".see-next");
+  const RESTART_BTN = $("button.restart-game");
 
-// Forms, other interactive elements
-const START_FORM = $("form[name='game-start']");
-const QUESTION_FORM = $("form[name='current-question']");
-const NEXT_BTN = $(".see-next");
-const RESTART_BTN = $("button.restart-game");
+  // Object to map template elements to
+  // app routes
+  const PAGE_ELEMENTS = {
+    'start': $('[data-page=start]'),
+    'question': $('[data-page=question]'),
+    'answer-feedback': $('[data-page=answer-feedback]'),
+    'final-feedback': $('[data-page=final-feedback]')
+  };
 
-START_FORM.submit(function(event) {
-  event.preventDefault();
-  setRoute(state, 'question');
-  renderApp(state, PAGE_ELEMENTS);
+  // Attach our event listeners
+  START_FORM.submit(function(event) {
+    event.preventDefault();
+    setRoute(state, 'question');
+    renderApp(state, PAGE_ELEMENTS);
+  });
+
+  RESTART_BTN.click(function(event){
+    event.preventDefault();
+    resetGame(state);
+    renderApp(state, PAGE_ELEMENTS);
+  });
+
+  QUESTION_FORM.submit(function(event) {
+    event.preventDefault();
+    const answer = $("input[name='user-answer']:checked").val();
+    answer = parseInt(answer, 10);
+    answerQuestion(state, answer);
+    renderApp(state, PAGE_ELEMENTS);
+  });
+
+  NEXT_BTN.click(function(event) {
+    advance(state);
+    renderApp(state, PAGE_ELEMENTS);
+  });
+
+  // Finally, render the app.
+  renderApp(state, PAGE_ELEMENTS); 
 });
-
-RESTART_BTN.click(function(event){
-  event.preventDefault();
-  resetGame(state);
-  renderApp(state, PAGE_ELEMENTS);
-});
-
-QUESTION_FORM.submit(function(event) {
-  event.preventDefault();
-  const answer = $("input[name='user-answer']:checked").val();
-  answer = parseInt(answer, 10);
-  answerQuestion(state, answer);
-  renderApp(state, PAGE_ELEMENTS);
-});
-
-NEXT_BTN.click(function(event) {
-  advance(state);
-  renderApp(state, PAGE_ELEMENTS);
-});
-
-$(function() { renderApp(state, PAGE_ELEMENTS); });
