@@ -179,7 +179,8 @@ function renderFinalFeedbackText(state, element) {
   element.text(text);
 }
 
-// Event handlers
+// Object to map template elements to
+// app routes
 const PAGE_ELEMENTS = {
   'start': $('[data-page=start]'),
   'question': $('[data-page=question]'),
@@ -187,19 +188,25 @@ const PAGE_ELEMENTS = {
   'final-feedback': $('[data-page=final-feedback]')
 };
 
-$("form[name='game-start']").submit(function(event) {
+// Forms, other interactive elements
+const START_FORM = $("form[name='game-start']");
+const QUESTION_FORM = $("form[name='current-question']");
+const NEXT_BTN = $(".see-next");
+const RESTART_BTN = $("button.restart-game");
+
+START_FORM.submit(function(event) {
   event.preventDefault();
   setRoute(state, 'question');
   renderApp(state, PAGE_ELEMENTS);
 });
 
-$(".restart-game").click(function(event){
+RESTART_BTN.click(function(event){
   event.preventDefault();
   resetGame(state);
   renderApp(state, PAGE_ELEMENTS);
 });
 
-$("form[name='current-question']").submit(function(event) {
+QUESTION_FORM.submit(function(event) {
   event.preventDefault();
   const answer = $("input[name='user-answer']:checked").val();
   answer = parseInt(answer, 10);
@@ -207,7 +214,7 @@ $("form[name='current-question']").submit(function(event) {
   renderApp(state, PAGE_ELEMENTS);
 });
 
-$(".see-next").click(function(event) {
+NEXT_BTN.click(function(event) {
   advance(state);
   renderApp(state, PAGE_ELEMENTS);
 });
