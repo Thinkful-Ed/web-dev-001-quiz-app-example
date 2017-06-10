@@ -85,9 +85,9 @@ function advance(state) {
 function renderApp(state, elements) {
   // default to hiding all routes, then show the current route
   Object.keys(elements).forEach(function(route) {
-    elements[route].hide();
+    elements[route].attr('hidden', 'hidden');
   });
-  elements[state.route].show();
+  elements[state.route].removeAttr('hidden');
 
   if (state.route === 'start') {
       renderStartPage(state, elements[state.route]);
@@ -138,16 +138,19 @@ function renderQuestionText(state, element) {
 
 function renderChoices(state, element) {
   var currentQuestion = state.questions[state.currentQuestionIndex];
+  var frag = $(document.createDocumentFragment());
   var choices = currentQuestion.choices.map(function(choice, index) {
     return (
-      '<li>' +
-        '<label>' +
-          '<input type="radio" name="user-answer" value="' + index + '" id="choice-'+ index +'"required>' + choice +
-        '</label>' +
-      '</li>'
+        `<label>
+          <input type="radio" 
+            name="user-answer" 
+            value="${index}" 
+            id="choice-${index}" required> ${choice}
+        </label>`
     );
   });
-  element.html(choices);
+  frag.append(choices);
+  element.html(frag);
 }
 
 function renderAnswerFeedbackHeader(state, element) {
