@@ -143,7 +143,7 @@ function renderChoices(state, element) {
   const currentQuestion = state.questions[state.currentQuestionIndex];
   const choices = currentQuestion.choices.map((choice, index) => {
     return (
-        `<label>
+        `<label for="choice-${index}">
           <input type="radio" 
             name="user-answer" 
             value="${index}" 
