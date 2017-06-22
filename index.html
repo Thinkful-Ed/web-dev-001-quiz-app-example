@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" name="description" content="Exemplary solution for Quiz App challenge in Thinkful's Front End Web Development course">
+  <meta charset="utf-8">
+  <meta name="description" content="Example solution for Quiz App challenge in Thinkful's Front End Web Development course">
 
   <title>Thinkful | Quiz App Solution</title>
 
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <!-- <link rel="stylesheet" href="styles/grid.css"> TODO -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -14,38 +15,40 @@
 
   <div class="container">
 
-    <main>
-    <!-- inline styling this instead of CSS because it should never be viewable to anyone except our JS, which uses this content as mini-templates for questions
-    and answers -->
-      <div class="start-page" style="display: none;">
+    <!--aria-live tells screen readers "watch this element for changes". We'll cover it soon!-->
+    <main role="main" aria-live="polite" aria-relevant="additions text">
+      
+    <!-- html5 boolean hidden allows us to selectively reveal content to all users -->
+      <div data-page="start" hidden>
         <h1>Quiz App</h1>
         <p>This app tests your ability to guess the right answer to four questions. The correct answers have been chosen at random.</p>
         <p><em>Good luck friend!</em></p>
-        <form name="game-start">
+        <form action="#" name="game-start">
           <button type="submit">start</button>
         </form>
       </div>
 
-      <div class="question-page" style="display: none;">
-        <h3><span class="question-count"></span> : <span class="question-text"></span></h3>
-        <form name="current-question">
-          <ol type="A" class="choices">
-          </ol>
+      <div data-page="question" hidden>
+        <form action="#" name="current-question">
+          <fieldset>
+            <legend><span class="question-count"></span> : <span class="question-text"></span></legend>
+            <div class="choices"></div>
+          </fieldset>
           <button type="submit">Submit</button>
           <button class="restart-game">Start over</button>
         </form>
       </div>
 
-      <div class="answer-feedback-page" style="display: none;">
+      <div data-page="answer-feedback" hidden>
         <div class="feedback-container">
-          <div class="feedback-header"></div>
+          <h2 class="feedback-header"></h2>
           <p class="feedback-text"></p>
           <button class="see-next"></button>
         </div>
       </div>
 
-      <div class="final-feedback-page" style="display: none;">
-        <h1>Results</h1>
+      <div data-page="final-feedback" hidden>
+        <h2>Results</h2>
         <p class="results-text"></p>
         <button class="restart-game">Start over</button>
       </div>
