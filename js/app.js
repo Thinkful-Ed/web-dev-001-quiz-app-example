@@ -195,19 +195,19 @@ $(function() {
   };
 
   // Attach our event listeners
-  START_FORM.submit(function(event) {
+  START_FORM.on('submit', function(event) {
     event.preventDefault();
     setRoute(state, 'question');
     renderApp(state, PAGE_ELEMENTS);
   });
 
-  RESTART_BTN.click(function(event){
+  RESTART_BTN.on('click', function(event){
     event.preventDefault();
     resetGame(state);
     renderApp(state, PAGE_ELEMENTS);
   });
 
-  QUESTION_FORM.submit(function(event) {
+  QUESTION_FORM.on('submit', function(event) {
     event.preventDefault();
     let answer = $("input[name='user-answer']:checked").val();
     answer = parseInt(answer, 10);
@@ -215,7 +215,7 @@ $(function() {
     renderApp(state, PAGE_ELEMENTS);
   });
 
-  NEXT_BTN.click(function(event) {
+  NEXT_BTN.on('click', function(event) {
     advance(state);
     renderApp(state, PAGE_ELEMENTS);
   });
