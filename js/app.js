@@ -182,16 +182,15 @@ $(function() {
   // Forms, other interactive elements
   const START_FORM = $("form[name='game-start']");
   const QUESTION_FORM = $("form[name='current-question']");
-  const NEXT_BTN = $(".see-next");
+  const NEXT_BTN = $("button.see-next");
   const RESTART_BTN = $("button.restart-game");
 
-  // Object to map template elements to
-  // app routes
+  // Object to map template elements to app routes
   const PAGE_ELEMENTS = {
-    'start': $('[data-page=start]'),
-    'question': $('[data-page=question]'),
-    'answer-feedback': $('[data-page=answer-feedback]'),
-    'final-feedback': $('[data-page=final-feedback]')
+    'start': $('div[data-page=start]'),
+    'question': $('div[data-page=question]'),
+    'answer-feedback': $('div[data-page=answer-feedback]'),
+    'final-feedback': $('div[data-page=final-feedback]')
   };
 
   // Attach our event listeners
@@ -200,13 +199,7 @@ $(function() {
     setRoute(state, 'question');
     renderApp(state, PAGE_ELEMENTS);
   });
-
-  RESTART_BTN.on('click', function(event){
-    event.preventDefault();
-    resetGame(state);
-    renderApp(state, PAGE_ELEMENTS);
-  });
-
+  
   QUESTION_FORM.on('submit', function(event) {
     event.preventDefault();
     let answer = $("input[name='user-answer']:checked").val();
@@ -217,6 +210,12 @@ $(function() {
 
   NEXT_BTN.on('click', function(event) {
     advance(state);
+    renderApp(state, PAGE_ELEMENTS);
+  });
+  
+  RESTART_BTN.on('click', function(event){
+    event.preventDefault();
+    resetGame(state);
     renderApp(state, PAGE_ELEMENTS);
   });
 
